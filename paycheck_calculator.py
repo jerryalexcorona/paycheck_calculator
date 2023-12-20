@@ -1,35 +1,53 @@
-def split_paycheck(amount, num_splits, percentages):
-    if not isinstance(amount, (int, float)):
-        return "Please enter a valid numeric paycheck amount."
+import random
 
-    if not isinstance(num_splits, int) or num_splits <= 0:
-        return "Please enter a valid positive integer for the number of splits."
+def split_paycheck():
+    try:
+        # Get the user's paycheck amount
+        paycheck_amount = float(input("Hey there! 😊 Enter your paycheck amount: $"))
 
-    if not all(isinstance(percentage, (int, float)) and 0 <= percentage <= 100 for percentage in percentages):
-        return "Please enter valid percentages between 0 and 100."
+        # Find out how many ways the user wants to split it
+        num_splits = int(input("Nice! 🌟 How many ways would you like to divide it into? "))
 
-    total_percentage = sum(percentages)
-    if total_percentage > 100:
-        return "Total percentage exceeds 100%. Please adjust your input."
+        # Gather the percentages for each split
+        percentages = []
+        for i in range(num_splits - 1):
+            percentage = float(input(f"Awesome! 💰 Enter the percentage for split {chr(65 + i)}: "))
+            percentages.append(percentage)
 
-    remainder_percentage = 100 - total_percentage
-    percentages.append(remainder_percentage)
-    
-    shares = [amount * (percentage / 100) for percentage in percentages]
+        # Check if the sum of percentages is greater than 100
+        total_percentage = sum(percentages)
+        if total_percentage > 100:
+            raise ValueError("Oops! 😅 Total percentage exceeds 100%. Please adjust your input.")
 
-    result = dict(zip(range(1, num_splits + 1), shares))
-    return result
+        # Calculate the remaining percentage
+        remainder_percentage = 100 - total_percentage
+        percentages.append(remainder_percentage)
 
-# Example usage:
-paycheck_amount = float(input("Enter your paycheck amount: "))
-num_splits = int(input("How many ways would you like to divide it into? "))
-percentages = []
+        # Calculate and display the split amounts
+        shares = [paycheck_amount * (percentage / 100) for percentage in percentages]
 
-for i in range(num_splits - 1):
-    percentage = float(input(f"What percentage goes into split {chr(65 + i)}? "))
-    percentages.append(percentage)
+        print("\nPaycheck Split:")
+        for key, value in zip(range(1, num_splits + 1), shares):
+            print(f"Split {chr(64 + key)}: ${value:.2f}")
 
-result = split_paycheck(paycheck_amount, num_splits, percentages)
-print("\nPaycheck Split:")
-for key, value in result.items():
-    print(f"Split {chr(64 + key)}: ${value:.2f}")
+        # Add a random friendly encouraging comment
+        encouraging_comments = [
+            "Great job! 🚀 You're on the path to hit your financial goals.",
+            "Fantastic! 🌈 Your budgeting skills are top-notch.",
+            "Keep it up! 🌟 Smart financial decisions lead to success.",
+            "You're doing amazing! 🎉 Planning your finances wisely pays off.",
+            "Way to go! 🌟 Your commitment to financial planning is admirable.",
+            "Impressive! 🌟 Your dedication to financial health is commendable.",
+            "Well done! 🌟 Each step you take brings you closer to financial success.",
+            "Outstanding! 🌟 Your financial planning skills are truly shining.",
+            "Bravo! 🌟 Your wise money management is setting you up for success."
+        ]
+        print("\n", random.choice(encouraging_comments))
+
+    except ValueError as e:
+        print(f"Uh-oh! 😅 Error: {e}")
+    except Exception as e:
+        print(f"Oops! 😅 An unexpected error occurred: {e}")
+
+# Example usage
+split_paycheck()
