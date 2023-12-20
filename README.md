@@ -28,15 +28,16 @@ If you find any issues or have suggestions for improvements, please open an issu
 
 # Development Setup
 1. Clone the repository. <br>
-  git clone https://github.com/jerryalexcorona/paycheck-splitter.git
+  git clone [https://github.com/jerryalexcorona/paycheck-splitter.git
+](https://github.com/jerryalexcorona/paycheck_calculator.git)
 
-2. Install dependencies. <br>
+3. Install dependencies. <br>
   pip install -r requirements.txt
 
-3. Make your changes and run tests. <br>
+4. Make your changes and run tests. <br>
   python tests.py
 
-4. Submit a pull request.
+5. Submit a pull request.
 
 
 # License
