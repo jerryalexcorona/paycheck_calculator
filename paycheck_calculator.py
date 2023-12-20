@@ -23,7 +23,7 @@ def split_paycheck():
         paycheck_amount = get_valid_float("Hey there! 😊 Enter your paycheck amount: $")
 
         # Find out how many ways the user wants to split it (up to a maximum of 20)
-        num_splits = get_valid_int("Nice! 🌟 How many ways would you like to divide it into? (Up to 20) ", max_value=20)
+        num_splits = get_valid_int("Nice! 🌟 How many ways would you like to divide it into? (Up to 10) ", max_value=10)
 
         # Gather the percentages for each split
         percentages = []
